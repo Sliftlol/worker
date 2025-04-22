@@ -10,7 +10,7 @@
 
 export default {
   async fetch(request, env) {
-    const targetUrl = "https://www.slift.space" + new URL(request.url).pathname;
+    const targetUrl = "http://www.slift.space" + new URL(request.url).pathname;
     return fetch(targetUrl, request);
   }
 }
