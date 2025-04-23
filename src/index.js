@@ -1,16 +1,21 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event))
+})
 
-export default {
-  async fetch(request, env) {
-    const targetUrl = "http://www.slift.space/" + new URL(request.url).pathname;
-    return fetch(targetUrl, request);
-  }
+// Construct request with original URI
+async function handleRequest(event) {
+  const request = event.request
+  const path = request.url.replace(WORKER_ENDPOINT,"")
+  const destUrl = TS + path               
+
+  // Construct new request using request sent to Worker
+  const modifiedRequest = new Request(destUrl, {
+    body: request.body,       
+    headers: request.headers,
+    method: request.method
+  })
+
+  // Wait for response from destination host and return to original requester
+  const resp = await fetch(modifiedRequest)         
+  return resp
 }
