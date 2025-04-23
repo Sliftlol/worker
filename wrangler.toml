@@ -4,3 +4,4 @@ account_id = "fcd15b80ac1aeb392771113dfd5d76c1""
 workers_dev = true
 route = ""
 zone_id = ""
+ars = { TS = "https://www.slift.space/", WORKER_ENDPOINT = "https://worker.bugbounty208.workers.dev/" }
