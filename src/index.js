@@ -4,7 +4,7 @@ addEventListener('fetch', event => {
 
 // Construct request with original URI
 async function handleRequest(event) {
-  const TS = "https://www.slift.space/"
+  const TS = "http://www.slift.space/"
   const WORKER_ENDPOINT = "https://worker.bugbounty208.workers.dev/" 
   const request = event.request
   const path = request.url.replace(WORKER_ENDPOINT,"")
